@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561
+{\fonttbl\f0\fnil\fcharset0 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf2 1. SELECT * FROM cd.facilities; \
+\
+2. SELECT name, membercost\
+FROM cd.facilities; \
+\
+3. SELECT name, membercost\
+FROM cd.facilities\
+WHERE membercost > 0;  \
+\
+4. SELECT facid, name, membercost, monthlymaintenance\
+FROM cd.facilities\
+WHERE membercost < (1/50)*monthlymaintenance; \
+\
+5. SELECT name\
+FROM cd.facilities\
+WHERE name LIKE '%Tennis%'; \
+\
+6. SELECT *\
+FROM cd.facilities\
+WHERE facid IN (1,5);  \
+\
+7. SELECT memid, joindate\
+FROM cd.members \
+WHERE joindate >= '2012-09-01';\
+\
+8. SELECT DISTINCT surname\
+FROM cd.members\
+limit 10;  \
+\
+9. SELECT memid, joindate\
+FROM cd.members\
+ORDER BY memid DESC\
+LIMIT 1;\
+\
+10. SELECT COUNT(guestcost) \
+FROM cd.facilities\
+WHERE guestcost >= 10; \
+\
+11. NONE\
+\
+12.   SELECT bookings.facid, SUM(bookings.slots) \
+FROM cd.bookings\
+WHERE starttime BETWEEN '12-09-01' AND '12-09-30'\
+GROUP BY facid\
+ORDER BY SUM(slots) DESC;  \
+\
+13. SELECT facid, SUM(slots) \
+FROM cd.bookings\
+GROUP BY facid\
+HAVING SUM(slots) > 1000\
+ORDER BY facid;  \
+\
+14. SELECT cd.bookings.starttime, cd.facilities.name \
+FROM cd.bookings\
+LEFT JOIN cd.facilities \
+ON cd.bookings.facid = cd.facilities.facid\
+WHERE name LIKE '%Tennis Court%' \
+AND starttime >= '2012-09-21' AND starttime < '2012-09-22'\
+ORDER BY starttime;  \
+\
+15. SELECT cd.bookings.starttime, cd.members.surname, cd.members.firstname \
+FROM cd.bookings\
+LEFT JOIN cd.members\
+ON cd.members.memid = cd.bookings.memid\
+WHERE surname = 'Farrell' AND firstname = 'David'; \
+}
